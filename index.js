@@ -33,6 +33,5 @@ module.exports = {
 var opts = {
     link: "https://sinhalasub.lk/movies/deadpool-wolverine-2024-sinhala-subtitles/",
     quality:"HD 720p",
-    jid:"null" 
 }
 PixaldrainDL(opts)
