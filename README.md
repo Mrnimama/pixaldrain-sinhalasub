@@ -1,16 +1,53 @@
 # pixaldrain-sinhalasub
 
 ## How to use.
-1. Copy This code and make file `pixaldrain-sinhslasub.js` 
+1. Copy This code and make file `pixaldrain-sinhslasub.js`
+  Code :
+```
+const { sinhalaSub } = require("mrnima-moviedl");
+
+/**
+ * download sinhalasub pixaldrain links.
+ * @param {*} link - sinhala sub movie link
+ * @param {*} quality - movie quality
+ * @param {*} type - result type : direct or alllinks
+ * @returns 
+ */
+async function PixaldrainDL(link,quality,type) {
+    var movie = await sinhalaSub();
+
+    var { result } = await movie.download(link);
+    var pixeldrain = {};
+    for (let index of result.links) {
+        if (index.link.includes("https://pixeldrain.com/")) {
+            pixeldrain[index.quality] = index.link.replace("/u/", "/api/file/")
+        }
+    }
+
+    var directLink = pixeldrain[quality]
+    return type === "direct" ? directLink : type === "alllinks" ? pixeldrain : "Give type : direct or alllinks" ;
+}
+
+module.exports = {
+    PixaldrainDL
+}
+
+```
+2. Require you created file with correct file path.
+```
+var { PixaldrainDL } = require("/pixaldrain-sinhslasub.js");
+```
 
 ### 1. Get all direct  links with quality.
 ```
-var opts = {
-    link: "https://sinhalasub.lk/movies/the-greatest-of-all-time-2024-sinhala-subtitles/",
-    quality: "HD 720p",
-    type: "alllinks" // "direct"
-}
-PixaldrainDL(opts)
+
+(async function() {
+    var link = "https://sinhalasub.lk/movies/the-greatest-of-all-time-2024-sinhala-subtitles/";
+    var quality = "HD 720p";
+    var type = "allinks" // "direct"
+    
+    console.log(await PixaldrainDL(link,quality,type))  
+}())
 ```
 ### Result
 ```
@@ -25,14 +62,36 @@ PixaldrainDL(opts)
 
 ### 2. Get only one direct link is you given quality.
 ```
-var opts = {
-    link: "https://sinhalasub.lk/movies/the-greatest-of-all-time-2024-sinhala-subtitles/",
-    quality: "HD 720p",
-    type: "direct" // "alllinks"
-}
-PixaldrainDL(opts)
+
+(async function() {
+    var link = "https://sinhalasub.lk/movies/the-greatest-of-all-time-2024-sinhala-subtitles/";
+    var quality = "HD 720p";
+    var type = "direct" // "alllinks"
+    
+    console.log(await PixaldrainDL(link,quality,type))  
+}())
 ```
 ### Result
 ```
 https://pixeldrain.com/api/file/nDM7ERPW
 ```
+
+### for your bot.
+```
+    var link = "https://sinhalasub.lk/movies/the-greatest-of-all-time-2024-sinhala-subtitles/";
+    var quality = "HD 720p";
+    var type = "direct" // "alllinks"
+    
+    const directLink = await PixaldrainDL(link,quality,type))
+    await sock.sendMessage(jid,{ document : { url : directLink }, fileName : "file.mp4" other options ..})
+
+
+```
+
+### Add this for your package.json
+```
+"mrnima-moviedl": "^1.0.0"
+```
+
+#### NPM : [mrnima-moviedl](https://www.npmjs.com/package/mrnima-moviedl)
+### GITHUB : [MRnima](https://github.com/darkmakerofc)
