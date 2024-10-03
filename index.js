@@ -1,8 +1,11 @@
 const { sinhalaSub } = require("mrnima-moviedl");
 
 /**
- * Pixaldrain download 
- * @param {*} opts 
+ * download sinhalasub pixaldrain links.
+ * @param {*} link - sinhala sub movie link
+ * @param {*} quality - movie quality
+ * @param {*} type - result type : direct or alllinks
+ * @returns 
  */
 async function PixaldrainDL(link,quality,type) {
     var movie = await sinhalaSub();
