@@ -1,6 +1,24 @@
 # pixaldrain-sinhalasub
 
 ## How to use.
+put this on your `package.json`
+```
+"pixaldrain-sinhalasub": "git+https://github.com/Mrnimama/pixaldrain-sinhalasub.git"
+```
+And use like this
+```
+    const {PixaldrainDL} = require("pixaldrain-sinhalasub")
+    var link = "https://sinhalasub.lk/movies/the-greatest-of-all-time-2024-sinhala-subtitles/";
+    var quality = "HD 720p";
+    
+    var directLink = await PixaldrainDL(link,quality,"direct");
+    var all_links = await PixaldrainDL(link,quality,"alllinks");
+
+```
+</br>
+
+## OR
+
 1. Copy This code and make file `pixaldrain-sinhslasub.js`
   Code :
 ```
