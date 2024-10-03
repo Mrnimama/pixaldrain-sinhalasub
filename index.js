@@ -4,10 +4,9 @@ const { sinhalaSub } = require("mrnima-moviedl");
  * Pixaldrain download 
  * @param {*} opts 
  */
-async function PixaldrainDL(opts) {
+async function PixaldrainDL(link,quality,type) {
     var movie = await sinhalaSub();
 
-    var link = opts.link; // Put here to movie link or episode link
     var { result } = await movie.download(link);
     var pixeldrain = {};
     for (let index of result.links) {
@@ -16,10 +15,8 @@ async function PixaldrainDL(opts) {
         }
     }
 
-    var directLink = pixeldrain[opts.quality]
-    console.log(pixeldrain)
-    console.log(directLink)
-    return opts.type === "direct" ? directLink : opts.type === "alllinks" ? pixeldrain : "Give type : direct or alllinks" ;
+    var directLink = pixeldrain[quality]
+    return type === "direct" ? directLink : type === "alllinks" ? pixeldrain : "Give type : direct or alllinks" ;
 }
 /*
 module.exports = {
@@ -30,9 +27,9 @@ module.exports = {
 
 //Example
 // var {PixaldrainDL} = require("./file...")
-var opts = {
-    link: "https://sinhalasub.lk/movies/the-greatest-of-all-time-2024-sinhala-subtitles/",
-    quality: "HD 720p",
-    type: "direct" // "alllinks"
-}
-PixaldrainDL(opts)
+
+var link = "https://sinhalasub.lk/movies/the-greatest-of-all-time-2024-sinhala-subtitles/";
+var quality = "HD 720p";
+var type = "direct" // "alllinks"
+
+PixaldrainDL(link,quality,type)
