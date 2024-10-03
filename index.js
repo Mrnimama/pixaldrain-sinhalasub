@@ -21,18 +21,21 @@ async function PixaldrainDL(link,quality,type) {
     var directLink = pixeldrain[quality]
     return type === "direct" ? directLink : type === "alllinks" ? pixeldrain : "Give type : direct or alllinks" ;
 }
-/*
+
 module.exports = {
     PixaldrainDL
 }
-*/
+
 
 
 //Example
 // var {PixaldrainDL} = require("./file...")
+/*
+(async function() {
+    var link = "https://sinhalasub.lk/movies/the-greatest-of-all-time-2024-sinhala-subtitles/";
+    var quality = "HD 720p";
+    var type = "alllinks" // "alllinks"
+    
+    console.log(await PixaldrainDL(link,quality,type))      
+}())*/
 
-var link = "https://sinhalasub.lk/movies/the-greatest-of-all-time-2024-sinhala-subtitles/";
-var quality = "HD 720p";
-var type = "direct" // "alllinks"
-
-PixaldrainDL(link,quality,type)
